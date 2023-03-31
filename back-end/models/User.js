@@ -14,8 +14,12 @@ const userSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
+      extensionNumber: {
+        type: Number,
+        required: true,
+      },
       phoneNumber: {
-        type: String,
+        type: Number,
         required: true,
       },
       identificationType: {
@@ -23,7 +27,7 @@ const userSchema = new mongoose.Schema(
         required: true,
       },
       identificationNumber: {
-        type: String,
+        type: Number,
         required: true,
       },
       address: {
@@ -46,6 +50,39 @@ const userSchema = new mongoose.Schema(
         type: Boolean,
         default: false,
       },
+      country:{
+        type: String,
+        required:true
+      },
+
+      personalCards:{
+        type:Array(
+          new Schema({
+            numberCard:Number,
+            HashPasword:String
+          },{_id:false})
+        )
+      },
+
+      savedCards:{
+        type:Array(
+          new Schema({
+            alias:String,
+            cardNumber:Number
+          },{_id:false})
+        )
+      },
+      Movements:{
+        type:Array(
+          new Schema({
+            cardOrigin:Number,
+            amount:Number,
+            destination:Number,
+            folio:Number
+          },{_id:false})
+        )
+      },
+
     },
     {
       timestamps: true,
