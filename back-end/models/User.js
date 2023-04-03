@@ -76,9 +76,11 @@ const userSchema = new mongoose.Schema(
         type:Array(
           new Schema({
             cardOrigin:Number,
+            date:Date,
             amount:Number,
             destination:Number,
-            folio:Number
+            folio:Number,
+            status:String
           },{_id:false})
         )
       },
