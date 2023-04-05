@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {Schema} = require("mongoose")
 
 const userSchema = new mongoose.Schema(
     {
@@ -13,18 +14,25 @@ const userSchema = new mongoose.Schema(
       email: {
         type: String,
         required: true,
+        unique:true
+      },
+      extensionNumber: {
+        type: Number,
+        required: true,
       },
       phoneNumber: {
-        type: String,
+        type: Number,
         required: true,
+        unique:true
       },
       identificationType: {
         type: String,
         required: true,
       },
       identificationNumber: {
-        type: String,
+        type: Number,
         required: true,
+        unique:true
       },
       address: {
         type: String,
@@ -34,10 +42,6 @@ const userSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
-      balance: {
-        type: Number,
-        default: 0,
-      },
       isVerified: {
         type: Boolean,
         default: false,
@@ -46,6 +50,42 @@ const userSchema = new mongoose.Schema(
         type: Boolean,
         default: false,
       },
+      country:{
+        type: String,
+        required:true
+      },
+
+      personalCards:{
+        type:Array(
+          new Schema({
+            numberCard:Number,
+            HashPasword:String,
+            balance:Number
+          },{_id:false})
+        )
+      },
+
+      savedCards:{
+        type:Array(
+          new Schema({
+            alias:String,
+            cardNumber:Number
+          },{_id:false})
+        )
+      },
+      Movements:{
+        type:Array(
+          new Schema({
+            cardOrigin:Number,
+            date:Date,
+            amount:Number,
+            destination:Number,
+            folio:Number,
+            status:String
+          },{_id:false})
+        )
+      },
+
     },
     {
       timestamps: true,
