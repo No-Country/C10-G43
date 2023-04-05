@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema(
         type: Number,
         required: true,
       },
+      extensionNumber: {
+        type: Number,
+        required: true,
+      },
       phoneNumber: {
         type: Number,
         required: true,
