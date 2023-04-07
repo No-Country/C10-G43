@@ -14,8 +14,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
-app.use("/api/users/", userRoute);
 
-app.listen(PORT_SERVER, () => {
-  console.log(`Server running on port ${PORT_SERVER}`);
-});
+require("./Routes/user.routes")(app);
+app.use("/api/users/", userRoute);
+app.listen(PORT_SERVER,()=>{
+    console.log(`Server running on port ${PORT_SERVER}`);
+})
+
+
+
+

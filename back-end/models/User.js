@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {Schema} = require("mongoose")
 
 const userSchema = new mongoose.Schema(
     {
@@ -13,6 +14,11 @@ const userSchema = new mongoose.Schema(
       email: {
         type: String,
         required: true,
+        unique:true
+      },
+      extensionNumber: {
+        type: Number,
+        required: true,
       },
       extensionNumber: {
         type: Number,
@@ -21,6 +27,7 @@ const userSchema = new mongoose.Schema(
       phoneNumber: {
         type: Number,
         required: true,
+        unique:true
       },
       identificationType: {
         type: String,
@@ -29,6 +36,7 @@ const userSchema = new mongoose.Schema(
       identificationNumber: {
         type: Number,
         required: true,
+        unique:true
       },
       address: {
         type: String,
@@ -37,10 +45,6 @@ const userSchema = new mongoose.Schema(
       password: {
         type: String,
         required: true,
-      },
-      balance: {
-        type: Number,
-        default: 0,
       },
       isVerified: {
         type: Boolean,
@@ -59,7 +63,8 @@ const userSchema = new mongoose.Schema(
         type:Array(
           new Schema({
             numberCard:Number,
-            HashPasword:String
+            HashPasword:String,
+            balance:Number
           },{_id:false})
         )
       },
