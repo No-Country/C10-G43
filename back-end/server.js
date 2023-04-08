@@ -6,7 +6,7 @@ const morgan = require("morgan");
 require("dotenv").config();
 const { PORT_SERVER } = process.env;
 require("./config/dbConfig");
-const userRoute = require("./routes/userRoutes.js");
+//const userRoute = require("./routes/userRoutes.js");
 
 app.use(morgan("tiny"));
 app.use(express.json());
@@ -16,7 +16,7 @@ app.use(cors());
 // Routes
 
 require("./Routes/user.routes")(app);
-app.use("/api/users/", userRoute);
+//app.use("/api/users/", userRoute);
 app.listen(PORT_SERVER,()=>{
     console.log(`Server running on port ${PORT_SERVER}`);
 })
