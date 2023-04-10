@@ -19,7 +19,22 @@ verifyToken = (req, res, next) => {
   });
 };
 
+
+isAdmin = (req, res, next) => {
+  User.findOne({ _id: req.params._id } )
+  .then(user=>{
+    if(user.isAdmin===true){
+      next();
+      return
+    }
+    res.status(403).send({ message: "Require Admin Role!" });
+    return;
+  }
+  )
+}
+
 const authJwt = {
   verifyToken: verifyToken,
+  isAdmin: isAdmin,
 };
 module.exports = authJwt;

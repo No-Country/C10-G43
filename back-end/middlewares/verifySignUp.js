@@ -1,6 +1,6 @@
 const User= require("../models/User")
 
-checkDuplicateUsernameOrEmail = (req, res, next) => {
+verifySignUp = (req, res, next) => {
 
 
       // Check if email is already in use
@@ -16,4 +16,4 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
     ;
 }
 
-module.exports = checkDuplicateUsernameOrEmail;
+module.exports = verifySignUp;
