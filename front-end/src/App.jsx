@@ -15,8 +15,11 @@ import Help from "./pages/Help";
 import Notifications from "./pages/Notifications";
 import Balance from "./pages/Balance";
 import MyCards from "./pages/MyCards";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom"; // prettier-ignore
 function App() {
   return (
     <BrowserRouter>
