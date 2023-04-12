@@ -14,10 +14,10 @@ const Register = () => {
                     <p className='text-sm text-slate-300'>Para hacerlo necesitamos validar tus datos, solo te tomará unos minutos.</p>
                 </div>
                 <div className='w-full flex flex-col gap-6'>
-                    <Link to='/validation' className='h-12 bg-white flex justify-center items-center'>
+                    <Link to='/data-validation' className='h-12 bg-white flex justify-center items-center'>
                         <button className='text-base font-semibold text-black'>Crear cuenta personal</button>
                     </Link> 
-                    <Link to='/validation' className='h-12 border-2 border-slate-500 flex justify-center items-center'>
+                    <Link to='/data-validation' className='h-12 border-2 border-slate-500 flex justify-center items-center'>
                         <button className='text-base font-semibold text-slate-300'>Crear cuenta de negocios</button>
                     </Link>
                     <p className='text-sm text-slate-300 pt-5'>¿Ya te registraste?  
