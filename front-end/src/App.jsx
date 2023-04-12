@@ -13,11 +13,13 @@ import Activity from "./pages/Activity";
 import Transfers from "./pages/Transfers";
 import Help from "./pages/Help";
 import Notifications from "./pages/Notifications";
+
 import {
   BrowserRouter,
   Routes,
   Route
 } from 'react-router-dom';
+
 
 function App() {
 
