@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const MoneyCard = ({ balance }) => {
   const balanceFormatted = balance.toLocaleString("es-MX", {
     minimumFractionDigits: 2,
@@ -18,9 +20,12 @@ const MoneyCard = ({ balance }) => {
           <button className="flex-1 py-2 bg-neutral-700">
             Ingresar dinero
           </button>
-          <button className="flex-1 py-2 bg-neutral-700">
+          <Link
+            to="/transfers"
+            className="flex-1 py-2 text-center bg-neutral-700"
+          >
             Transferir dinero
-          </button>
+          </Link>
         </div>
       </div>
     </div>

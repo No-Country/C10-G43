@@ -3,9 +3,9 @@ import { Icon } from "@iconify/react";
 
 const Notifications = () => {
   return (
-    <div className="h-screen text-white bg-neutral-900">
-      <div className="flex items-center p-6">
-        <Link to="/homepage">
+    <div className="min-h-screen text-white bg-neutral-900">
+      <div className="relative flex items-center p-6">
+        <Link to="/homepage" className="absolute">
           <Icon
             icon="material-symbols:arrow-back-ios-rounded"
             color="white"

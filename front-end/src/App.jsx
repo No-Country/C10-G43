@@ -13,34 +13,40 @@ import Activity from "./pages/Activity";
 import Transfers from "./pages/Transfers";
 import Help from "./pages/Help";
 import Notifications from "./pages/Notifications";
-
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from 'react-router-dom';
-
+import Balance from "./pages/Balance";
+import MyCards from "./pages/MyCards";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/register" element={<Register/>} />
-        <Route path="/data-validation" element={<DataValidation/>} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/data-validation" element={<DataValidation />} />
         <Route path="/data-validation/validate" element={<SendCode />} />
-        <Route path="/data-validation/validate/code" element={<CodeConfirmation />} />
-        <Route path="/data-validation/validate/verified" element={<Verified />} />
-        <Route path="/data-validation/validate/all-verified" element={<AllVerified />} />
-        <Route path="/registration" element={<RegistrationData/>} />
+        <Route
+          path="/data-validation/validate/code"
+          element={<CodeConfirmation />}
+        />
+        <Route
+          path="/data-validation/validate/verified"
+          element={<Verified />}
+        />
+        <Route
+          path="/data-validation/validate/all-verified"
+          element={<AllVerified />}
+        />
+        <Route path="/registration" element={<RegistrationData />} />
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/transfers" element={<Transfers />} />
         <Route path="/help" element={<Help />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/balance" element={<Balance />} />
+        <Route path="/cards" element={<MyCards />} />
       </Routes>
     </BrowserRouter>
   );
