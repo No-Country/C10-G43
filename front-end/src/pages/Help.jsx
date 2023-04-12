@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import HelpOptions from "../components/HelpOptions";
+import ButtonOptions from "../components/ButtonOptions";
 
 const Help = () => {
   return (
-    <div className="h-screen text-white bg-neutral-900">
-      <div className="flex items-center p-6">
-        <Link to="/homepage">
+    <div className="min-h-screen text-white bg-neutral-900">
+      <div className="relative flex items-center p-6">
+        <Link to="/homepage" className="absolute">
           <Icon
             icon="material-symbols:arrow-back-ios-rounded"
             color="white"
@@ -25,28 +25,28 @@ const Help = () => {
         />
       </div>
       <div className="flex flex-col gap-3 mx-6 mt-6">
-        <HelpOptions
+        <ButtonOptions
           icon="ph:user"
           title="Tu perfil"
           subTitle="Datos y problemas para ingresar"
         />
-        <HelpOptions
+        <ButtonOptions
           icon="uil:money-insert"
           title="Cuenta"
           subTitle="Ingresos, transferencias y extracciones"
         />
-        <HelpOptions
+        <ButtonOptions
           icon="uil:transaction"
           title="Pagos"
           subTitle="Compras, pagos y suscripciones"
         />
-        <HelpOptions
+        <ButtonOptions
           icon="uil:lock-alt"
           title="Seguridad"
           subTitle="Privacidad, robos o pérdidas"
         />
         <h1 className="mt-4">¿Necesitas ayuda personalizada?</h1>
-        <HelpOptions
+        <ButtonOptions
           icon="simple-line-icons:earphones"
           title="Atención al cliente"
           subTitle="Contáctanos para una mejor atención"

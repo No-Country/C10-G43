@@ -79,8 +79,8 @@ const Activity = () => {
   ];
   return (
     <div className="min-h-screen text-white bg-neutral-900">
-      <div className="flex items-center p-6">
-        <Link to="/homepage">
+      <div className="relative flex items-center p-6">
+        <Link to="/homepage" className="absolute">
           <Icon
             icon="material-symbols:arrow-back-ios-rounded"
             color="white"

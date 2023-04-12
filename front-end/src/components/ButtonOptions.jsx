@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 
-const HelpOptions = ({ icon, title, subTitle }) => {
+const ButtonOptions = ({ icon, title, subTitle = "" }) => {
   return (
     <div className="relative flex items-center gap-2 p-2 bg-neutral-800">
       <div className="p-3 rounded-full bg-neutral-400 ">
@@ -19,4 +19,4 @@ const HelpOptions = ({ icon, title, subTitle }) => {
   );
 };
 
-export default HelpOptions;
+export default ButtonOptions;
