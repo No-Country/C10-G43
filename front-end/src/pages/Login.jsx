@@ -46,7 +46,6 @@ const Login = () => {
                 <p className='text-sm text-slate-300'>¿Aún no te registraste?  
                     <Link to='/register' className='font-bold text-white'> Crea tu cuenta.</Link>
                 </p>
-                
             </div>
         </div>
     );
