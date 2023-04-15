@@ -74,7 +74,25 @@ const loginUser = async (req, res) => {
   }
 };
 
+const getUserInfo = async (req, res) => {
+  try {
+    const user = await User.findById(req.body.userId);
+    user.password = "";
+    res.send({
+      message: "User info fetched succesfully",
+      data: user,
+      success: true,
+    });
+  } catch (error) {
+    res.status(400).send({
+      message: error.message,
+      success: false,
+    });
+  }
+};
+
 module.exports = {
     registerUser,
     loginUser,
+    getUserInfo,
   };
