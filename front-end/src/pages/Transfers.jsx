@@ -90,15 +90,18 @@ const Transfers = () => {
         <h1 className="flex-1 text-xl text-center">Transferencias</h1>
       </div>
       <div className="flex flex-col gap-3">
-        <div className="flex items-center p-4 mx-6 bg-neutral-700">
+        <Link
+          to="/transfers/email"
+          className="flex items-center p-4 mx-6 bg-neutral-700"
+        >
           <Icon icon="mdi:person-switch" color="white" className="text-4xl" />
-          <div className="flex flex-col flex-1 ml-4">
+          <div className="flex flex-col flex-1 ml-4 text-start">
             <p className="">Con E-mail o celular</p>
             <p className="text-sm text-slate-200">
               A cuentas con financial wallet
             </p>
           </div>
-        </div>
+        </Link>
         <div className="flex items-center p-4 mx-6 bg-neutral-700">
           <Icon icon="mdi:person-switch" color="white" className="text-4xl" />
           <div className="flex flex-col flex-1 ml-4">
