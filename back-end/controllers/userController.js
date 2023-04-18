@@ -64,6 +64,24 @@ const loginUser = async (req, res) => {
     res.send({
       message: "User logged succesfully",
       Access_token: token,
+      userId: user._id,
+      success: true,
+    });
+  } catch (error) {
+    res.status(400).send({
+      message: error.message,
+      success: false,
+    });
+  }
+};
+
+const getUserInfo = async (req, res) => {
+  try {
+    const user = { ...(await User.findById(req.body.userId))._doc };
+    delete user.password;
+    res.send({
+      message: "User info fetched succesfully",
+      data: user,
       success: true,
     });
   } catch (error) {
@@ -75,6 +93,7 @@ const loginUser = async (req, res) => {
 };
 
 module.exports = {
-    registerUser,
-    loginUser,
-  };
+  registerUser,
+  loginUser,
+  getUserInfo,
+};
