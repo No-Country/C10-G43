@@ -88,7 +88,7 @@ const getTransactionsController = async (req, res) => {
 
 // deposit funds using stripe
 
-/* const depositStripeController = async (req, res) => {
+const depositStripeController = async (req, res) => {
   try {
     const { token, amount } = req.body;
 
@@ -147,12 +147,12 @@ const getTransactionsController = async (req, res) => {
       success: false,
     });
   }
-}; */
+};
 
 
 module.exports = {
   transactionController,
   verifyAccController,
   getTransactionsController,
-//   depositStripeController,
+  depositStripeController,
 };
