@@ -21,7 +21,10 @@ import {
   BrowserRouter,
   Routes,
   Route,
-} from "react-router-dom"; // prettier-ignore
+} from "react-router-dom";
+import TransfersCheckout from "./pages/TransfersCheckout";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+
 function App() {
   return (
     <BrowserRouter>
@@ -31,29 +34,25 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/data-validation" element={<DataValidation />} />
         <Route path="/data-validation/validate" element={<SendCode />} />
-        <Route
-          path="/data-validation/validate/code"
-          element={<CodeConfirmation />}
-        />
-        <Route
-          path="/data-validation/validate/verified"
-          element={<Verified />}
-        />
-        <Route
-          path="/data-validation/validate/all-verified"
-          element={<AllVerified />}
-        />
+        <Route path="/data-validation/validate/code" element={<CodeConfirmation />} />
+        <Route path="/data-validation/validate/verified" element={<Verified />} />
+        <Route path="/data-validation/validate/all-verified" element={<AllVerified />}/>
         <Route path="/registration" element={<RegistrationData />} />
-        <Route path="/homepage" element={<Homepage />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/activity" element={<Activity />} />
-        <Route path="/transfers" element={<Transfers />} />
-        <Route path="/transfers/email" element={<TransfersEmail />} />
-        <Route path="/transfers/email/:id" element={<TransfersAmount />} />
-        <Route path="/help" element={<Help />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/balance" element={<Balance />} />
-        <Route path="/cards" element={<MyCards />} />
+
+        <Route element={<ProtectedRoutes/>}>
+          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/activity" element={<Activity />} />
+          <Route path="/transfers" element={<Transfers />} />
+          <Route path="/transfers/checkout" element={<TransfersCheckout />} />
+          <Route path="/transfers/email" element={<TransfersEmail />} />
+          <Route path="/transfers/email/:id" element={<TransfersAmount />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/balance" element={<Balance />} />
+          <Route path="/cards" element={<MyCards />} />
+        </Route>
+        
       </Routes>
     </BrowserRouter>
   );

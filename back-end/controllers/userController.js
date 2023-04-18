@@ -39,7 +39,7 @@ const loginUser = async (req, res) => {
     // check if user exists
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "User does not exist",
       });
@@ -51,7 +51,7 @@ const loginUser = async (req, res) => {
       user.password
     );
     if (!validPassword) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "Invalid password",
       });
