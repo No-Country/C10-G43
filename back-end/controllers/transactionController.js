@@ -1,7 +1,7 @@
 const Transaction = require("../models/Transactions.js");
 const User = require("../models/User.js");
 //const stripe = require("stripe")(process.env.STRIPE_KEY);
-const { uuid } = require("uuidv4");
+// const { uuid } = require("uuidv4");
 
 // transfer money from one account to another
 
@@ -39,15 +39,18 @@ const transactionController = async (req, res) => {
 
 const verifyAccController = async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.body.receiver });
-    if (user) {
-      res.send({
+    const userFound = await User.findOne({
+      $or: [{ _id: req.body.receiverId }, { email: req.body.receiverEmail }],
+    });
+    if (userFound) {
+      const { firstName, lastName, email, _id: userId } = userFound._doc;
+      return res.send({
         message: "Account verified",
-        data: user,
+        data: { firstName, lastName, email, userId },
         success: true,
       });
     } else {
-      res.send({
+      return res.send({
         message: "Account not found",
         data: null,
         success: false,
@@ -70,8 +73,8 @@ const getTransactionsController = async (req, res) => {
       $or: [{ sender: req.body.userId }, { receiver: req.body.userId }],
     })
       .sort({ createdAt: -1 })
-      .populate("sender")
-      .populate("receiver");
+      .populate("sender", "firstName lastName")
+      .populate("receiver", "firstName lastName");
     res.send({
       message: "Transaction fetched",
       data: transaction,
@@ -149,10 +152,11 @@ const depositStripeController = async (req, res) => {
   }
 };
 
-
 module.exports = {
   transactionController,
   verifyAccController,
   getTransactionsController,
   depositStripeController,
 };
+
+

@@ -15,6 +15,8 @@ import Help from "./pages/Help";
 import Notifications from "./pages/Notifications";
 import Balance from "./pages/Balance";
 import MyCards from "./pages/MyCards";
+import TransfersEmail from "./pages/TransfersEmail";
+import TransfersAmount from "./pages/TransfersAmount";
 import {
   BrowserRouter,
   Routes,
@@ -46,6 +48,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/transfers" element={<Transfers />} />
+        <Route path="/transfers/email" element={<TransfersEmail />} />
+        <Route path="/transfers/email/:id" element={<TransfersAmount />} />
         <Route path="/help" element={<Help />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/balance" element={<Balance />} />
