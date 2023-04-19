@@ -16,11 +16,11 @@ const userSchema = new mongoose.Schema(
       },
       phoneNumber: {
         type: String,
-        required: true,
+        required: false,
       },
       identificationType: {
         type: String,
-        required: true,
+        required: false,
       },
       identificationNumber: {
         type: String,
@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema(
       },
       address: {
         type: String,
-        required: true,
+        required: false,
       },
       password: {
         type: String,
