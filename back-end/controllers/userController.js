@@ -9,7 +9,7 @@ const registerUser = async (req, res) => {
 
     const user = await User.findOne({ email: req.body.email });
     if (user) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "User already exists",
       });
