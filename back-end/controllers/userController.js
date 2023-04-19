@@ -9,7 +9,7 @@ const registerUser = async (req, res) => {
 
     const user = await User.findOne({ email: req.body.email });
     if (user) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "User already exists",
       });
@@ -39,7 +39,7 @@ const loginUser = async (req, res) => {
     // check if user exists
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "User does not exist",
       });
@@ -51,7 +51,7 @@ const loginUser = async (req, res) => {
       user.password
     );
     if (!validPassword) {
-      return res.send({
+      return res.status(400).send({
         success: false,
         message: "Invalid password",
       });
@@ -64,6 +64,24 @@ const loginUser = async (req, res) => {
     res.send({
       message: "User logged succesfully",
       Access_token: token,
+      userId: user._id,
+      success: true,
+    });
+  } catch (error) {
+    res.status(400).send({
+      message: error.message,
+      success: false,
+    });
+  }
+};
+
+const getUserInfo = async (req, res) => {
+  try {
+    const user = { ...(await User.findById(req.body.userId))._doc };
+    delete user.password;
+    res.send({
+      message: "User info fetched succesfully",
+      data: user,
       success: true,
     });
   } catch (error) {
@@ -75,6 +93,7 @@ const loginUser = async (req, res) => {
 };
 
 module.exports = {
-    registerUser,
-    loginUser,
-  };
+  registerUser,
+  loginUser,
+  getUserInfo,
+};
