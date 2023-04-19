@@ -1,18 +1,39 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { Icon } from '@iconify/react';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const RegistrationData = () => {
 
     const [ isHiddenPass, setIsHiddenPass ] = useState(true);
     const [ isHiddenConfirmPass, setIsHiddenConfirmPass ] = useState(true);
+    const [ isPassEqual, setIsPassEqual ] = useState('border-0');
 
     const navigate = useNavigate();
 
-    const handleFormSubmit = (event) =>{
-        event.preventDefault();
-        alert('usuario registrado');
-        navigate('/login')
+    const { register, handleSubmit } = useForm();
+
+    const submit = (data) =>{
+
+        if(data.password === data.confirmPassword){
+            axios.post('http://localhost:9000/api/users/register', data)
+                .then(() => {
+                    setIsPassEqual('border-0');
+                    alert('usuario registrado');
+                    navigate('/login');
+                })
+                .catch(error => {
+                    alert(error.response.data.message)
+                    console.log(error.response)
+                });
+            
+        }
+        else{
+            alert('Las contraseñas deben coincidir');
+            setIsPassEqual('border-2');
+        }
+
     }
 
     return (
@@ -25,29 +46,61 @@ const RegistrationData = () => {
                     <p className='text-xl font-bold text-white p-3'>Registra tus datos</p>
                     <p className='text-sm text-slate-300'>Para seguir, ingresá tus datos.</p>
                 </div>
-                <form className='w-full flex flex-col gap-3 text-slate-300' onSubmit={handleFormSubmit}>
+                <form className='w-full flex flex-col gap-3 text-slate-300' onSubmit={handleSubmit(submit)}>
                     <fieldset className='flex flex-col text-xs'>
                         <label htmlFor="name" className='pb-1'>Nombre</label>
-                        <input type='text' id='name' placeholder='Escribe aquí tu nombre' required='required' className='h-12 bg-neutral-700 font-semibold text-black pl-4'/>
+                        <input 
+                            className='h-12 bg-neutral-700 font-semibold text-black pl-4'
+                            type='text' 
+                            id='name' 
+                            placeholder='Escribe aquí tu nombre' 
+                            required='required' 
+                            {...register('firstName')}
+                        />
                     </fieldset>
                     <fieldset className='flex flex-col text-xs'>
                         <label htmlFor="last-name" className='pb-1'>Apellido</label>
-                        <input type='text' id='last-name' placeholder='Escribe aquí tu apellido' required='required' className='h-12 bg-neutral-700 font-semibold text-black pl-4'/>
+                        <input 
+                            className='h-12 bg-neutral-700 font-semibold text-black pl-4'
+                            type='text' 
+                            id='last-name' 
+                            placeholder='Escribe aquí tu apellido' 
+                            required='required'
+                            {...register('lastName')}
+                        />
                     </fieldset>
                     <fieldset className='flex flex-col text-xs'>
-                        <label htmlFor="country">País de residencia</label>
-                        <select name="" id="country" required='required' className='h-12 bg-neutral-700 border-transparent font-semibold text-white pl-4'>
-                            <option value="">Seleccionar</option>
-                            <option value="">Ecuador</option>
-                        </select>
+                        <label htmlFor="email" className='pb-1'>Correo</label>
+                        <input 
+                            className='h-12 bg-neutral-700 font-semibold text-black pl-4'
+                            type='email' 
+                            id='email' 
+                            placeholder='Escribe aquí tu correo' 
+                            required='required'
+                            {...register('email')}
+                        />
                     </fieldset>
                     <fieldset className='flex flex-col text-xs'>
                         <label htmlFor="DNI" className='pb-1'>DNI</label>
-                        <input type='text' id='DNI' placeholder='Escribe aquí tu DNI' required='required' className='h-12 bg-neutral-700 font-semibold text-black pl-4'/>
+                        <input 
+                            className='h-12 bg-neutral-700 font-semibold text-black pl-4'
+                            type='text' 
+                            id='DNI' 
+                            placeholder='Escribe aquí tu DNI' 
+                            required='required' 
+                            {...register('identificationNumber')}
+                        />
                     </fieldset>
                     <fieldset className='flex flex-col text-xs relative'>
                         <label htmlFor="password" className='pb-1'>Contraseña</label>
-                        <input type={ isHiddenPass? 'password' : 'text' } id='password' placeholder='Escribe aquí tu contraseña' required='required' className='h-12 bg-neutral-700 font-semibold text-black pl-4'/>
+                        <input 
+                            className='h-12 bg-neutral-700 font-semibold text-black pl-4'
+                            type={ isHiddenPass? 'password' : 'text' } 
+                            id='password' 
+                            placeholder='Escribe aquí tu contraseña' 
+                            required='required' 
+                            {...register('password')}
+                        />
                         <div className='absolute right-3 bottom-3'>
                             {
                                 isHiddenPass?
@@ -59,7 +112,14 @@ const RegistrationData = () => {
                     </fieldset>
                     <fieldset className='flex flex-col text-xs relative'>
                         <label htmlFor="validate-password" className='pb-1'>Confirmar contraseña</label>
-                        <input type={ isHiddenConfirmPass? 'password' : 'text' } id='validate-password' placeholder='Vuelve a escribir tu contraseña' required='required' className='h-10 bg-neutral-700 font-semibold text-black pl-4'/>
+                        <input 
+                            className={`h-12 ${isPassEqual} border-pink-950 bg-neutral-700 font-semibold text-black pl-4`}
+                            type={ isHiddenConfirmPass? 'password' : 'text' } 
+                            id='validate-password' 
+                            placeholder='Vuelve a escribir tu contraseña' 
+                            required='required' 
+                            {...register('confirmPassword')}
+                        />
                         <div className='absolute right-3 bottom-3'>
                             {
                                 isHiddenConfirmPass?

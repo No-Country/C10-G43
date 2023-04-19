@@ -14,7 +14,6 @@ const Login = () => {
     const submit = (data) => {
         axios.post('http://localhost:9000/api/users/login', data)
             .then(res => {
-                console.log(res.data)
                 localStorage.setItem('token', res.data.Access_token);
                 navigate('/homepage');
             })
@@ -23,6 +22,10 @@ const Login = () => {
                 alert(error.response.data.message)
                 }
             });
+        reset({
+            email: '',
+            password: ''
+        })
     };
 
     return (
