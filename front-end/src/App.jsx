@@ -28,6 +28,7 @@ import {
 } from "react-router-dom"; //prettier-ignore
 import TransfersCheckout from "./pages/TransfersCheckout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import DepositAmount from "./pages/DepositAmount";
 
 function App() {
   const [isDesktop, setIsDesktop] = useState(true);
@@ -39,34 +40,52 @@ function App() {
     mediaQuery.addEventListener("change", listener);
     return () => mediaQuery.removeEventListener("change", listener);
   }, []);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={isDesktop ? <DesktopPage /> : <LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/data-validation" element={<DataValidation />} />
-        <Route path="/data-validation/validate" element={<SendCode />} />
-        <Route path="/data-validation/validate/code" element={<CodeConfirmation />} />
-        <Route path="/data-validation/validate/verified" element={<Verified />} />
-        <Route path="/data-validation/validate/all-verified" element={<AllVerified />} />
-        <Route path="/registration" element={<RegistrationData />} />
+      {
+        isDesktop ?
+          <Route path="/*" element={<DesktopPage />} />
+        :
+          <>
+            <Route path="/" element={ <LandingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/data-validation" element={<DataValidation />} />
+            <Route path="/data-validation/validate" element={<SendCode />} />
+            <Route path="/data-validation/validate/code" element={<CodeConfirmation />} />
+            <Route path="/data-validation/validate/verified" element={<Verified />} />
+            <Route path="/data-validation/validate/all-verified" element={<AllVerified />} />
+            <Route path="/registration" element={<RegistrationData />} />
 
-        <Route element={<ProtectedRoutes />}>
-          <Route path="/homepage" element={<Homepage />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/activity" element={<Activity />} />
-          <Route path="/transfers" element={<Transfers />} />
-          <Route path="/transfers/checkout" element={<TransfersCheckout />} />
-          <Route path="/transfers/email" element={<TransfersEmailOrId byEmail={true} />} />
-          <Route path="/transfers/email/:id" element={<TransfersAmount />} />
-          <Route path="/transfers/byId" element={<TransfersEmailOrId byEmail={false} />} />
-          <Route path="/transfers/:id" element={<TransferVoucher />} />
-          <Route path="/cards" element={<UnderConstruction name={"Mis tarjetas"} />} />
-          <Route path="/help" element={<UnderConstruction name={"Ayuda"} />} />
-          <Route path="/notifications" element={<UnderConstruction name={"Notificaciones"} />} />
-          <Route path="/balance" element={<UnderConstruction name={"Tus gastos"} />} />
-        </Route>
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/homepage" element={<Homepage />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/activity" element={<Activity />} />
+              <Route path="/transfers" element={<Transfers />} />
+              <Route path="/transfers/checkout" element={<TransfersCheckout />} />
+              <Route path="/transfers/email" element={<TransfersEmailOrId byEmail={true} />} />
+              <Route path="/transfers/email/:id" element={<TransfersAmount />} />
+
+              {
+              /*<Route path="/help" element={<Help />} />
+              <Route path="/notifications" element={<Notifications />} />
+              <Route path="/balance" element={<Balance />} />
+              <Route path="/cards" element={<MyCards />} />¨*/
+              }
+
+              <Route path="/deposit-funds" element={<DepositAmount />} />
+              <Route path="/transfers/byId" element={<TransfersEmailOrId byEmail={false} />} />
+              <Route path="/transfers/:id" element={<TransferVoucher />} />
+              <Route path="/cards" element={<UnderConstruction name={"Mis tarjetas"} />} />
+              <Route path="/help" element={<UnderConstruction name={"Ayuda"} />} />
+              <Route path="/notifications" element={<UnderConstruction name={"Notificaciones"} />} />
+              <Route path="/balance" element={<UnderConstruction name={"Tus gastos"} />} />
+              
+            </Route>
+          </>
+        }
       </Routes>
     </BrowserRouter>
   );

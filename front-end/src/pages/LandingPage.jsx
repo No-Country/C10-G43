@@ -4,12 +4,12 @@ import icon from "../assets/icon.svg";
 
 const LandingPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen gap-10 p-6 bg-neutral-800">
+    <div className="flex flex-col items-center justify-center w-screen h-screen gap-10 p-6 bg-neutral-900">
       <div className="w-[152px] h-[152px]  rounded-full">
         <img src={icon} alt="icon" className="w-full h-full" />
       </div>
       <div className="text-center">
-        <p className="p-3 text-xl font-semibold text-white">¡Te damos la bienvenida!</p>
+        <p className="p-3 text-xl font-semibold text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-600 bg-clip-text">¡Te damos la bienvenida!</p>
         <p className="text-sm text-slate-300">
           Inicia sesión o crea una cuenta para comenzar a administrar tu dinero.
         </p>
@@ -25,7 +25,7 @@ const LandingPage = () => {
           className="flex items-center justify-center h-14 rounded bg-gradient-to-r from-blue-600 to-fuchsia-600 p-0.5"
           to="/register"
         >
-          <button className="w-full h-full p-4 text bg-neutral-800">
+          <button className="w-full h-full p-4 text bg-neutral-900">
             <h1 className="text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-600 bg-clip-text">
               Crea tu cuenta
             </h1>
