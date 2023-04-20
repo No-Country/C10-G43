@@ -24,6 +24,7 @@ import {
 } from "react-router-dom";
 import TransfersCheckout from "./pages/TransfersCheckout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import DepositAmount from "./pages/DepositAmount";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/balance" element={<Balance />} />
           <Route path="/cards" element={<MyCards />} />
+          <Route path="/deposit-funds" element={<DepositAmount />} />
         </Route>
         
       </Routes>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MoneyCard = ({ balance }) => {
   const balanceFormatted = balance.toLocaleString("es-MX", {
@@ -8,6 +8,9 @@ const MoneyCard = ({ balance }) => {
   const balanceParts = balanceFormatted.split(".");
   const integerPart = balanceParts[0].replace(",", ".");
   const decimalPart = balanceParts[1];
+
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col gap-2 mt-8">
       <p className="text-lg font-medium">Tu dinero</p>
@@ -17,7 +20,7 @@ const MoneyCard = ({ balance }) => {
           $<span className="text-3xl">{integerPart}</span>,{decimalPart}
         </p>
         <div className="flex gap-4 mt-4">
-          <button className="flex-1 py-2 bg-neutral-700">
+          <button onClick={()=> navigate('/deposit-funds')} className="flex-1 py-2 bg-neutral-700">
             Ingresar dinero
           </button>
           <Link

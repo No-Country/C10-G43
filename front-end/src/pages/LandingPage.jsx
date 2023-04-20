@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const LandingPage = () => {
     return (
-        <div className="w-screen h-screen bg-neutral-800 flex flex-col justify-center items-center gap-10 p-6">
+        <div className="w-screen h-screen bg-neutral-900 flex flex-col justify-center items-center gap-10 p-6">
             <div className='w-[152px] h-[152px] bg-neutral-700 rounded-full'></div>
             <div className='text-center'>
                 <p className='text-xl font-semibold text-white p-3'>¡Te damos la bienvenida!</p>

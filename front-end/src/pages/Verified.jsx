@@ -20,7 +20,7 @@ const Verified = () => {
     ];
 
     return (
-        <div className='w-screen h-screen bg-neutral-800'>
+        <div className='w-screen h-screen bg-neutral-900'>
             <Link to='/data-validation' className='w-full h-[5%] flex items-center backdrop-blur pl-6'>
                 <Icon icon="ic:outline-navigate-next" color="#f1f1f1" width="24" height="24" hFlip={true}/>
             </Link>
