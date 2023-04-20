@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import TransfersCheckout from "./TransfersCheckout";
 import { verifyAccountId } from "../utils/api";
 import { getBalance } from "../utils/api";
+import Notiflix from "notiflix";
 
 const TransfersAmount = () => {
   const { id } = useParams();
@@ -13,12 +14,18 @@ const TransfersAmount = () => {
   const [receiverName, setReceiverName] = useState("");
   const [reference, setReference] = useState("");
   const [balance, setBalance] = useState(0);
+  Notiflix.Notify.init({
+    timeout: 2000,
+    clickToClose: true,
+    showOnlyTheLastOne: true,
+  });
   const changePage = () => {
     if (!next) {
       //validate required fields
       if (!amount) return;
       if (!reference) return;
       if (amount > balance) {
+        Notiflix.Notify.failure("No tienes suficiente dinero para realizar esta transferencia");
         return;
       }
     }
