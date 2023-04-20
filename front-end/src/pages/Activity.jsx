@@ -2,19 +2,14 @@ import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import TransactionContainer from "../components/TransactionContainer";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import getConfig from "../utils/getConfig";
+import { getTransactions } from "../utils/api";
 
 const Activity = () => {
   const [transactions, setTransactions] = useState([]);
   useEffect(() => {
     const fetchTransactions = async () => {
-      const { data } = await axios.post(
-        "http://localhost:9000/api/transactions/get-all-transactions-by-user",
-        {},
-        getConfig()
-      );
-      setTransactions(data.data);
+      const transactions = await getTransactions();
+      setTransactions(transactions);
     };
     fetchTransactions();
   }, []);
