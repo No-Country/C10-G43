@@ -28,7 +28,6 @@ import {
 } from "react-router-dom"; //prettier-ignore
 import TransfersCheckout from "./pages/TransfersCheckout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import { isMobile } from "react-device-detect";
 
 function App() {
   const [isDesktop, setIsDesktop] = useState(true);
