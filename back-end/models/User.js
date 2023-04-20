@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const {Schema} = require("mongoose")
 
 const userSchema = new mongoose.Schema(
     {
@@ -14,37 +13,30 @@ const userSchema = new mongoose.Schema(
       email: {
         type: String,
         required: true,
-        unique:true
-      },
-      extensionNumber: {
-        type: Number,
-        required: true,
-      },
-      extensionNumber: {
-        type: Number,
-        required: true,
       },
       phoneNumber: {
-        type: Number,
-        required: true,
-        unique:true
+        type: String,
+        required: false,
       },
       identificationType: {
         type: String,
-        required: true,
+        required: false,
       },
       identificationNumber: {
-        type: Number,
+        type: String,
         required: true,
-        unique:true
       },
       address: {
         type: String,
-        required: true,
+        required: false,
       },
       password: {
         type: String,
         required: true,
+      },
+      balance: {
+        type: Number,
+        default: 0,
       },
       isVerified: {
         type: Boolean,
@@ -54,42 +46,6 @@ const userSchema = new mongoose.Schema(
         type: Boolean,
         default: false,
       },
-      country:{
-        type: String,
-        required:true
-      },
-
-      personalCards:{
-        type:Array(
-          new Schema({
-            numberCard:Number,
-            HashPasword:String,
-            balance:Number
-          },{_id:false})
-        )
-      },
-
-      savedCards:{
-        type:Array(
-          new Schema({
-            alias:String,
-            cardNumber:Number
-          },{_id:false})
-        )
-      },
-      Movements:{
-        type:Array(
-          new Schema({
-            cardOrigin:Number,
-            date:Date,
-            amount:Number,
-            destination:Number,
-            folio:Number,
-            status:String
-          },{_id:false})
-        )
-      },
-
     },
     {
       timestamps: true,
