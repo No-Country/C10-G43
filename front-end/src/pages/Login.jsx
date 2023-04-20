@@ -4,8 +4,10 @@ import { Icon } from "@iconify/react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Notiflix from "notiflix";
+import config from "../utils/config";
 
 const Login = () => {
+  const { API_BASE_URL } = config;
   const [isHidden, setIsHidden] = useState(true);
   const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ const Login = () => {
 
   const submit = (data) => {
     axios
-      .post("http://localhost:9000/api/users/login", data)
+      .post(`${API_BASE_URL}/users/login`, data)
       .then((res) => {
         localStorage.setItem("token", res.data.Access_token);
         navigate("/homepage");
