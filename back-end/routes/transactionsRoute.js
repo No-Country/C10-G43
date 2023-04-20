@@ -3,7 +3,8 @@ const {
   transactionController,
   verifyAccController,
   getTransactionsController,
-//   depositStripeController,
+  depositStripeController,
+  getTransactionByIdController,
 } = require("../controllers/transactionController");
 const { getIdUser } = require("../middlewares/authMiddleware.js");
 
@@ -17,10 +18,12 @@ router.post("/verify-account", getIdUser, verifyAccController);
 
 // get all transactions for a user
 
-router.post("/get-all-transactions-by-user",getIdUser, getTransactionsController);
+router.post("/get-all-transactions-by-user", getIdUser, getTransactionsController);
+
+router.post("/get-transaction-by-id", getIdUser, getTransactionByIdController);
 
 // deposit funds using stripe
 
-// router.post("/deposit-funds",getIdUser, depositStripeController);
+router.post("/deposit-funds", getIdUser, depositStripeController);
 
 module.exports = router;

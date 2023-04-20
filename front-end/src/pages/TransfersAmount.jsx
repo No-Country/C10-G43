@@ -1,50 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
-import TransfersPaymentMethod from "./TransfersPaymentMethod";
-
-const Contacts = [
-  {
-    id: 1,
-    name: "Maria isabel",
-    type: "Financial Wallet",
-  },
-  {
-    id: 2,
-    name: "Andres Alguacil",
-    type: "Financial Wallet",
-  },
-  {
-    id: 3,
-    name: "Juan Garcia",
-    type: "Financial Wallet",
-  },
-  {
-    id: 4,
-    name: "Maria isabel",
-    type: "Financial Wallet",
-  },
-  {
-    id: 5,
-    name: "Pilar Gonzalez",
-    type: "Financial Wallet",
-  },
-];
+import TransfersCheckout from "./TransfersCheckout";
+import { verifyAccountId } from "../utils/api";
+import { getBalance } from "../utils/api";
+import Notiflix from "notiflix";
 
 const TransfersAmount = () => {
   const { id } = useParams();
   const [next, setNext] = useState(false);
   const [amount, setAmount] = useState(0);
+  const [receiverName, setReceiverName] = useState("");
+  const [reference, setReference] = useState("");
+  const [balance, setBalance] = useState(0);
+  Notiflix.Notify.init({
+    timeout: 2000,
+    clickToClose: true,
+    showOnlyTheLastOne: true,
+  });
   const changePage = () => {
+    if (!next) {
+      //validate required fields
+      if (!amount) return;
+      if (!reference) return;
+      if (amount > balance) {
+        Notiflix.Notify.failure("No tienes suficiente dinero para realizar esta transferencia");
+        return;
+      }
+    }
     setNext(!next);
   };
   const handleAmount = (e) => {
     setAmount(e.target.value);
   };
-  const searchContact = (id) => {
-    return Contacts.find((contact) => contact.id === parseInt(id));
-  };
+  useEffect(() => {
+    const getReceiverName = async () => {
+      const { data } = await verifyAccountId(id);
+      const { firstName, lastName } = data;
+      setReceiverName(firstName + " " + lastName);
+    };
+    const getBalanceData = async () => {
+      const data = await getBalance();
+      setBalance(data);
+    };
+    getBalanceData();
+    getReceiverName();
+  }, [id]);
   if (!next) {
     return (
       <div className="flex flex-col min-h-screen text-white bg-neutral-900">
@@ -60,18 +62,30 @@ const TransfersAmount = () => {
         </div>
         <div className="flex flex-col justify-center mt-8 text-center">
           <h1 className="">¿Cuánto dinero quieres transferir?</h1>
-          <h1 className="text-sm text-neutral-400">
-            A {searchContact(id).name}
-          </h1>
+          <h1 className="text-sm text-neutral-400">A {receiverName}</h1>
         </div>
         <div className="flex flex-col items-center justify-center gap-3 p-2 mx-6 mt-12">
           <input
-            type="text"
+            type="number"
             placeholder="$0"
-            className="max-w-xl text-2xl text-center text-white bg-transparent outline-none m-width-8"
+            className={`max-w-xl text-2xl text-center text-white bg-transparent outline-none m-width-8 ${
+              amount ? "border-b-2 border-blue-600" : "border-b-2 border-red-700"
+            }`}
             onChange={handleAmount}
+            required
           />
-          <h1 className="text-sm">$4.890,00 disponible</h1>
+          <h1 className="text-sm">${balance} disponible</h1>
+        </div>
+        <div className="p-6">
+          <input
+            type="text"
+            placeholder="Motivo de la transferencia"
+            className={`w-full p-4 mt-8 text-xl text-center text-white outline-none bg-neutral-800 ${
+              reference ? "border-2 border-blue-600" : "border-2 border-red-700"
+            }`}
+            onChange={(e) => setReference(e.target.value)}
+            required
+          />
         </div>
         <div className="px-6 mt-auto">
           <button
@@ -79,20 +93,19 @@ const TransfersAmount = () => {
             onClick={changePage}
           >
             Continuar
-            <Icon
-              icon="octicon:arrow-right-16"
-              className="inline-block ml-2 text-2xl"
-            />
+            <Icon icon="octicon:arrow-right-16" className="inline-block ml-2 text-2xl" />
           </button>
         </div>
       </div>
     );
   }
   return (
-    <TransfersPaymentMethod
+    <TransfersCheckout
       amount={amount}
       changePage={changePage}
-      name={searchContact(id).name}
+      name={receiverName}
+      id={id}
+      reference={reference}
     />
   );
 };
