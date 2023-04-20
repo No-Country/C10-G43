@@ -28,7 +28,7 @@ const Login = () => {
       })
       .catch((error) => {
         if (error.response.status === 400) {
-          Notiflix.Notify.failure("Usuario o contraseña incorrectos");
+          Notiflix.Notify.failure(error.response.data.message);
         }
       });
     reset({
@@ -38,13 +38,13 @@ const Login = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-neutral-800">
-      <Link to="/" className="w-full h-[5%] flex items-center backdrop-blur pl-6">
+    <div className="w-screen h-screen bg-neutral-900">
+      <Link to="/" className="w-full h-[5%] flex items-center pl-6">
         <Icon icon="ic:outline-navigate-next" color="#f1f1f1" width="24" height="24" hFlip={true} />
       </Link>
       <div className="w-screen h-[95%] flex flex-col justify-center gap-16 p-6">
         <div className="text-center">
-          <p className="p-3 text-xl font-bold text-white">¡Hola de nuevo!</p>
+          <p className="p-3 text-xl font-bold text-transparent bg-gradient-to-r from-blue-400 to-fuchsia-600 bg-clip-text">¡Hola de nuevo!</p>
           <p className="text-sm text-slate-300">Para seguir, ingresá tus datos.</p>
         </div>
         <form className="flex flex-col w-full gap-3 text-slate-300" onSubmit={handleSubmit(submit)}>
@@ -53,7 +53,7 @@ const Login = () => {
               Correo electronico
             </label>
             <input
-              className="h-12 pl-4 font-semibold text-black bg-neutral-700"
+              className="h-12 pl-4 rounded bg-transparent font-semibold text-white border-2 border-violet-500"
               type="email"
               id="email"
               placeholder="Escribe aquí tu e-mail"
@@ -66,7 +66,7 @@ const Login = () => {
               Contraseña
             </label>
             <input
-              className="h-12 pl-4 font-semibold text-black bg-neutral-700"
+              className="h-12 pl-4 rounded font-semibold text-white bg-transparent border-2 border-violet-500"
               type={isHidden ? "password" : "text"}
               id="password"
               placeholder="Escribe aquí tu contraseña"
