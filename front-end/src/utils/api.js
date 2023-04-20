@@ -67,3 +67,14 @@ export const transferFunds = async (transferData) => {
     .then((res) => res.data);
   return responseData;
 };
+
+export const DepositFunds = async (payload) => {
+  try {
+    const { data } = await api.post(`${API_BASE_URL}/transactions/deposit-funds`, payload);
+    return data;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+export const getAPI = () => api;
