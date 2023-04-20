@@ -1,7 +1,15 @@
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Notiflix from "notiflix";
 
 const Menu = ({ hidden, onClick }) => {
+  const navigate = useNavigate();
+  Notiflix.Confirm.init({
+    backgroundColor: "#171717",
+    titleColor: "#ffffff",
+    messageColor: "#ffffff",
+    okButtonBackground: "#ff0000",
+  });
   return (
     <div
       className={
@@ -18,16 +26,6 @@ const Menu = ({ hidden, onClick }) => {
       <ul className="flex flex-col gap-8 px-6 text-xl">
         <div className="flex flex-col gap-8 pb-4 text-xl border-b-2 border-neutral-700">
           <li>
-            <Link to="/homepage" className="flex items-center gap-5">
-              <Icon
-                icon="mdi:home-outline"
-                color="white"
-                className="text-3xl"
-              />
-              Inicio
-            </Link>
-          </li>
-          <li>
             <Link to="/profile" className="flex items-center gap-5">
               <Icon icon="ph:user" color="white" className="text-3xl" />
               Perfil
@@ -38,16 +36,12 @@ const Menu = ({ hidden, onClick }) => {
           <li>
             <Link to="/balance" className="flex items-center gap-5">
               <Icon icon="uil:wallet" color="white" className="text-3xl" />
-              Tu dinero
+              Tus gastos
             </Link>
           </li>
           <li>
             <Link to="/cards" className="flex items-center gap-5">
-              <Icon
-                icon="mdi:credit-card-outline"
-                color="white"
-                className="text-3xl"
-              />
+              <Icon icon="mdi:credit-card-outline" color="white" className="text-3xl" />
               Tarjetas
             </Link>
           </li>
@@ -82,14 +76,24 @@ const Menu = ({ hidden, onClick }) => {
             </Link>
           </li>
           <li>
-            <Link to="/signoff" className="flex items-center gap-5">
-              <Icon
-                icon="fluent:door-arrow-right-16-regular"
-                color="white"
-                className="text-3xl"
-              />
+            <button
+              onClick={() =>
+                Notiflix.Confirm.show(
+                  "Cerrar sesion",
+                  "¿Estas seguro que deseas cerrar sesion?",
+                  "Si",
+                  "No",
+                  () => {
+                    localStorage.clear();
+                    navigate("/login");
+                  }
+                )
+              }
+              className="flex items-center gap-5"
+            >
+              <Icon icon="fluent:door-arrow-right-16-regular" color="white" className="text-3xl" />
               Cerrar sesion
-            </Link>
+            </button>
           </li>
         </div>
       </ul>
