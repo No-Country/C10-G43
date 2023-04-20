@@ -1,7 +1,7 @@
 const Transaction = require("../models/Transactions.js");
 const User = require("../models/User.js");
-//const stripe = require("stripe")(process.env.STRIPE_KEY);
-// const { uuid } = require("uuidv4");
+const stripe = require("stripe")(process.env.STRIPE_KEY);
+const { uuid } = require("uuidv4");
 
 // transfer money from one account to another
 
