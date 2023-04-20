@@ -1,13 +1,24 @@
 const Transaction = require("../models/Transactions.js");
 const User = require("../models/User.js");
-const stripe = require("stripe")(process.env.STRIPE_KEY);
-const { uuid } = require("uuidv4");
+//const stripe = require("stripe")(process.env.STRIPE_KEY);
+// const { uuid } = require("uuidv4");
 
 // transfer money from one account to another
 
 const transactionController = async (req, res) => {
   try {
     // save the transaction
+    req.body.sender = req.body.userId;
+    const amount = req.body.amount;
+    const { balance: senderBalance } = await User.findById(req.body.sender).select("balance");
+    if (senderBalance < amount) {
+      return res.send({
+        message: "Insufficient funds",
+        data: null,
+        success: false,
+      });
+    }
+
     const newTransaction = new Transaction(req.body);
     await newTransaction.save();
 
@@ -41,6 +52,7 @@ const verifyAccController = async (req, res) => {
   try {
     const userFound = await User.findOne({
       $or: [{ _id: req.body.receiverId }, { email: req.body.receiverEmail }],
+      _id: { $ne: req.body.userId },
     });
     if (userFound) {
       const { firstName, lastName, email, _id: userId } = userFound._doc;
@@ -70,6 +82,29 @@ const verifyAccController = async (req, res) => {
 const getTransactionsController = async (req, res) => {
   try {
     const transaction = await Transaction.find({
+      $or: [{ sender: req.body.userId }, { receiver: req.body.userId }],
+    })
+      .sort({ createdAt: -1 })
+      .populate("sender", "firstName lastName")
+      .populate("receiver", "firstName lastName");
+    res.send({
+      message: "Transaction fetched",
+      data: transaction,
+      success: true,
+    });
+  } catch (error) {
+    res.send({
+      message: "Transaction not fetched",
+      data: error.message,
+      success: false,
+    });
+  }
+};
+
+const getTransactionByIdController = async (req, res) => {
+  try {
+    const transaction = await Transaction.findOne({
+      _id: req.body.transactionId,
       $or: [{ sender: req.body.userId }, { receiver: req.body.userId }],
     })
       .sort({ createdAt: -1 })
@@ -150,11 +185,12 @@ const depositStripeController = async (req, res) => {
       success: false,
     });
   }
-}; 
+};
 
 module.exports = {
   transactionController,
   verifyAccController,
   getTransactionsController,
   depositStripeController,
+  getTransactionByIdController,
 };

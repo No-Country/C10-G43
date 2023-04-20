@@ -20,13 +20,14 @@ const DepositAmount = () => {
             token: token, 
             amount: amount
         });
+
         return response;
     }
 
     return (
         <div className='w-screen h-screen bg-neutral-900'>
             <div className='w-full h-[5%] flex items-center'>
-                <Link to='/homepage' className='flex items-center backdrop-blur pl-6'>
+                <Link to='/homepage' className='flex items-center pl-6'>
                     <Icon icon="ic:outline-navigate-next" color="#f1f1f1" width="24" height="24" hFlip={true}/>
                 </Link>
                 <h1 className='grow text-center text-slate-300'>Ingresar dinero</h1>
@@ -54,7 +55,7 @@ const DepositAmount = () => {
                     stripeKey="pk_test_51MsERVA0z17wfrUBPE1SATDMvcwgpreFXvKC8DeYJObu9WMaikTL2NLbtPX1aeJMWQQXY88V68NemhzEKqMOoiJR00BxKuX7L9"
                 >
                     <button 
-                        className='w-full h-12 bg-white text-sm font-semibold text-black'
+                        className='w-full h-12 text-sm font-semibold text-white whiterounded bg-gradient-to-r from-blue-600 to-fuchsia-600'
                         type='submit'
                     >
                         Ingresar dinero

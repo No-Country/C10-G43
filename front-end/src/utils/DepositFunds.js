@@ -1,6 +1,10 @@
+import config from "../utils/config";
+
 export const DepositFunds = async(payload)=>{
     try{
-      await axios.post("http://localhost:9000/api/transactions/deposit-funds", payload); 
+      const { API_BASE_URL } = config;
+      const { data } = await axios.post(`${API_BASE_URL}/deposit-funds`, payload); 
+      return data;
     }catch(error){
       return error.response
     }
