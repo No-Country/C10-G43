@@ -1,7 +1,7 @@
 const Transaction = require("../models/Transactions.js");
 const User = require("../models/User.js");
-//const stripe = require("stripe")(process.env.STRIPE_KEY);
-// const { uuid } = require("uuidv4");
+const stripe = require("stripe")(process.env.STRIPE_KEY);
+const { uuid } = require("uuidv4");
 
 // transfer money from one account to another
 
@@ -91,7 +91,7 @@ const getTransactionsController = async (req, res) => {
 
 // deposit funds using stripe
 
-/* const depositStripeController = async (req, res) => {
+const depositStripeController = async (req, res) => {
   try {
     const { token, amount } = req.body;
 
@@ -150,11 +150,11 @@ const getTransactionsController = async (req, res) => {
       success: false,
     });
   }
-}; */
+}; 
 
 module.exports = {
   transactionController,
   verifyAccController,
   getTransactionsController,
-  //   depositStripeController,
+  depositStripeController,
 };
