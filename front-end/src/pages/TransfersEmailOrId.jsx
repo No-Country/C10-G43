@@ -16,7 +16,7 @@ const TransfersEmailOrId = ({ byEmail }) => {
   });
 
   const handleEmailChange = (e) => {
-    setSearch(e.target.value.trim());
+    setSearch(e.target.value.trim().toLowerCase());
   };
 
   const notifyError = (res) => {
