@@ -5,9 +5,12 @@ import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import Notiflix from "notiflix";
+import { useDispatch } from 'react-redux';
+import { setAmountDeposited } from "../store/slices/amountDeposited.slice";
 
 const DepositAmount = () => {
   const [value, setValue] = useState("$");
+  const dispatch = useDispatch();
 
   Notiflix.Notify.init({
     timeout: 2000,
@@ -29,7 +32,8 @@ const DepositAmount = () => {
       amount: amount,
     });
     if (response.success) {
-      navigate("/homepage");
+      dispatch(setAmountDeposited(response.data.amount))
+      navigate("/deposit-funds/voucher");
       Notiflix.Notify.success("Dinero ingresado correctamente");
     }
     return response;

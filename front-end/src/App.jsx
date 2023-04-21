@@ -29,6 +29,7 @@ import {
 import TransfersCheckout from "./pages/TransfersCheckout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import DepositAmount from "./pages/DepositAmount";
+import DepositVoucher from "./pages/DepositVoucher";
 
 function App() {
   const [isDesktop, setIsDesktop] = useState(true);
@@ -82,7 +83,7 @@ function App() {
               <Route path="/help" element={<UnderConstruction name={"Ayuda"} />} />
               <Route path="/notifications" element={<UnderConstruction name={"Notificaciones"} />} />
               <Route path="/balance" element={<UnderConstruction name={"Tus gastos"} />} />
-              
+              <Route path="/deposit-funds/voucher" element={<DepositVoucher />} />
             </Route>
           </>
         }
