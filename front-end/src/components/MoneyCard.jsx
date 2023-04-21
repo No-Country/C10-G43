@@ -20,12 +20,15 @@ const MoneyCard = ({ balance }) => {
           $<span className="text-3xl">{integerPart}</span>,{decimalPart}
         </p>
         <div className="flex gap-4 mt-4">
-          <button onClick={()=> navigate('/deposit-funds')} className="flex-1 py-2 bg-neutral-700">
+          <button
+            onClick={() => navigate("/deposit-funds")}
+            className="flex-1 py-2 bg-purple-600 rounded from-blue-600 to-fuchsia-600"
+          >
             Ingresar dinero
           </button>
           <Link
             to="/transfers"
-            className="flex-1 py-2 text-center bg-neutral-700"
+            className="flex-1 items-center justify-center flex rounded bg-purple-600 from-blue-600 to-fuchsia-600 p-0.5 "
           >
             Transferir dinero
           </Link>

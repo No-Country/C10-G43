@@ -20,7 +20,7 @@ const Menu = ({ hidden, onClick }) => {
     >
       <div className="flex p-6">
         <button onClick={onClick}>
-          <Icon icon="ic:round-close" color="white" className="text-3xl" />
+          <Icon icon="ic:round-close" color="#7e22ce" className="text-3xl" />
         </button>
       </div>
       <ul className="flex flex-col gap-8 px-6 text-xl">

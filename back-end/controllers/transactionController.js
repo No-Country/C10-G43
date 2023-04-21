@@ -1,7 +1,7 @@
 const Transaction = require("../models/Transactions.js");
 const User = require("../models/User.js");
-//const stripe = require("stripe")(process.env.STRIPE_KEY);
-// const { uuid } = require("uuidv4");
+const stripe = require("stripe")(process.env.STRIPE_KEY);
+const { uuid } = require("uuidv4");
 
 // transfer money from one account to another
 
@@ -81,7 +81,7 @@ const verifyAccController = async (req, res) => {
 
 const getTransactionsController = async (req, res) => {
   try {
-    const transaction = await Transaction.find({
+    const transactions = await Transaction.find({
       $or: [{ sender: req.body.userId }, { receiver: req.body.userId }],
     })
       .sort({ createdAt: -1 })
@@ -89,7 +89,12 @@ const getTransactionsController = async (req, res) => {
       .populate("receiver", "firstName lastName");
     res.send({
       message: "Transaction fetched",
-      data: transaction,
+      data: transactions.map((transaction) => {
+        return {
+          ...transaction._doc,
+          transactionType: transaction.sender._id == req.body.userId ? "Sent" : "Received",
+        };
+      }),
       success: true,
     });
   } catch (error) {

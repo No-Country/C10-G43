@@ -14,10 +14,12 @@ const TransactionContainer = ({ transactions, viewMore }) => {
             receiverLastName={transaction.receiver.lastName}
             senderName={transaction.sender.firstName}
             senderLastName={transaction.sender.lastName}
+            transactionType={transaction.transactionType}
+            reference={transaction.reference}
           />
         ))}
         <Link to="/activity" className={viewMore ? "hidden" : "flex justify-center py-2 text-xl "}>
-          <p className="flex justify-center py-2 text-xl ">Ver más</p>
+          <p className="flex justify-center py-2 text-xl text-purple-600 ">Ver más</p>
         </Link>
       </div>
     </>
