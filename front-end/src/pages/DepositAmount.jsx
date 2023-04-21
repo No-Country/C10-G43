@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { DepositFunds } from "../utils/api";
 import { Link } from "react-router-dom";
@@ -7,10 +7,20 @@ import { useNavigate } from "react-router-dom";
 import Notiflix from "notiflix";
 import { useDispatch } from 'react-redux';
 import { setAmountDeposited } from "../store/slices/amountDeposited.slice";
+import { getBalance } from "../utils/api";
 
 const DepositAmount = () => {
   const [value, setValue] = useState("$");
   const dispatch = useDispatch();
+  const [balance, setBalance] = useState(0);
+
+  useEffect(()=> {
+    const fetchBalance = async () => {
+      const balance = await getBalance();
+      setBalance(balance);
+    };
+    fetchBalance();
+  },[])
 
   Notiflix.Notify.init({
     timeout: 2000,
@@ -66,7 +76,7 @@ const DepositAmount = () => {
               onChange={handleChange}
             />
           </form>
-          <p className="text-xs text-[gray] pt-4">$4.890,00 disponible</p>
+          <p className="text-xs text-[gray] pt-4">$ {balance} disponible</p>
         </div>
         <StripeCheckout
           token={onToken}
