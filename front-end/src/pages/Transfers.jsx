@@ -32,7 +32,7 @@ const Transfers = () => {
         <Link className="flex items-center p-4 mx-6 bg-neutral-700" to="/transfers/byId">
           <Icon icon="mdi:person-switch" color="white" className="text-4xl" />
           <div className="flex flex-col flex-1 ml-4">
-            <p className="">Con ID o aliasr</p>
+            <p className="">Con ID o alias</p>
             <p className="text-sm text-slate-200">A cuentas bancarias o digitales</p>
           </div>
         </Link>

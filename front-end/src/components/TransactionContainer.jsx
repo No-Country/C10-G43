@@ -15,6 +15,7 @@ const TransactionContainer = ({ transactions, viewMore }) => {
             senderName={transaction.sender.firstName}
             senderLastName={transaction.sender.lastName}
             transactionType={transaction.transactionType}
+            reference={transaction.reference}
           />
         ))}
         <Link to="/activity" className={viewMore ? "hidden" : "flex justify-center py-2 text-xl "}>

@@ -7,6 +7,7 @@ const TransactionItem = ({
   senderName,
   senderLastName,
   transactionType,
+  reference,
 }) => {
   return (
     <div className="flex items-center justify-between p-4 ">
@@ -25,10 +26,15 @@ const TransactionItem = ({
         <p
           className={
             "text-lg font-semibold" +
-            (transactionType === "Received" ? " text-[#72CE22]" : " text-[#c43c38]")
+            (transactionType === "Received"
+              ? " text-[#72CE22]"
+              : reference === "stripe deposit"
+              ? " text-[#72CE22]"
+              : " text-[#c43c38]")
           }
         >
-          {transactionType === "Received" ? "+" : "-"} ${amount}
+          {transactionType === "Received" ? "+" : reference === "stripe deposit" ? "+" : "-"} $
+          {amount}
         </p>
       </div>
     </div>
