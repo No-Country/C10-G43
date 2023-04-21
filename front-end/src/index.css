@@ -1,3 +1,11 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.nx-confirm-button-ok {
+  background: linear-gradient(to right, #3b82f6, #db2777) !important;
+}
+/* .nx-confirm-button-cancel {
+  border: 2px solid !important;
+  border-image: linear-gradient(to right, #3b82f6, #db2777) 1 !important;
+} */

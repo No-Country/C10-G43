@@ -6,15 +6,12 @@ const TransactionItem = ({
   receiverLastName,
   senderName,
   senderLastName,
+  transactionType,
 }) => {
   return (
     <div className="flex items-center justify-between p-4 ">
       <div className="flex items-center gap-x-4">
-        <Icon
-          icon="mdi:user-circle-outline"
-          color="white"
-          className="text-4xl"
-        />
+        <Icon icon="mdi:user-circle-outline" color="white" className="text-4xl" />
         <div>
           <p className="text-lg text-gray-300">
             De {senderName} {senderLastName}
@@ -25,7 +22,14 @@ const TransactionItem = ({
         </div>
       </div>
       <div className="flex items-center gap-x-2">
-        <p className="text-lg font-semibold">${amount}</p>
+        <p
+          className={
+            "text-lg font-semibold" +
+            (transactionType === "Received" ? " text-[#72CE22]" : " text-[#c43c38]")
+          }
+        >
+          {transactionType === "Received" ? "+" : "-"} ${amount}
+        </p>
       </div>
     </div>
   );

@@ -36,10 +36,10 @@ const Homepage = () => {
       <Menu hidden={menuHidden} onClick={handleMenuClick} />
       <div className="flex justify-between p-6 ">
         <button onClick={handleMenuClick}>
-          <Icon icon="ic:round-menu" color="white" className="text-3xl" />
+          <Icon icon="ic:round-menu" color="#7e22ce" className="text-3xl" />
         </button>
         <Link to="/notifications">
-          <Icon icon="mdi:bell-outline" color="white" className="text-3xl" />
+          <Icon icon="mdi:bell-outline" color="#7e22ce" className="text-3xl" />
         </Link>
       </div>
       <div className="flex flex-col px-5 py-4 text-white ">
