@@ -110,5 +110,3 @@ Para iniciar el backend, sigue los siguientes pasos:
    ```
    Nota: Si tienes algún problema con la dirección, revisa la salida del servidor para verificar la dirección correcta.
    ```
-
-Espero que estas instrucciones sean útiles para ti. Si tienes alguna pregunta o problema, no dudes en hacérmelo saber. ¡Buena suerte con tu proyecto!
