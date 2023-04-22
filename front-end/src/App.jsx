@@ -12,10 +12,6 @@ import Homepage from "./pages/Homepage";
 import Profile from "./pages/Profile";
 import Activity from "./pages/Activity";
 import Transfers from "./pages/Transfers";
-/* import Help from "./pages/Help";
-import Notifications from "./pages/Notifications";
-import Balance from "./pages/Balance";
-import MyCards from "./pages/MyCards"; */
 import TransfersEmailOrId from "./pages/TransfersEmailOrId";
 import TransfersAmount from "./pages/TransfersAmount";
 import TransferVoucher from "./pages/TransferVoucher";
@@ -45,12 +41,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      {
-        isDesktop ?
+        {isDesktop ? (
           <Route path="/*" element={<DesktopPage />} />
-        :
+        ) : (
           <>
-            <Route path="/" element={ <LandingPage />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/data-validation" element={<DataValidation />} />
@@ -69,24 +64,20 @@ function App() {
               <Route path="/transfers/email" element={<TransfersEmailOrId byEmail={true} />} />
               <Route path="/transfers/email/:id" element={<TransfersAmount />} />
 
-              {
-              /*<Route path="/help" element={<Help />} />
-              <Route path="/notifications" element={<Notifications />} />
-              <Route path="/balance" element={<Balance />} />
-              <Route path="/cards" element={<MyCards />} />¨*/
-              }
-
               <Route path="/deposit-funds" element={<DepositAmount />} />
               <Route path="/transfers/byId" element={<TransfersEmailOrId byEmail={false} />} />
               <Route path="/transfers/:id" element={<TransferVoucher />} />
               <Route path="/cards" element={<UnderConstruction name={"Mis tarjetas"} />} />
               <Route path="/help" element={<UnderConstruction name={"Ayuda"} />} />
-              <Route path="/notifications" element={<UnderConstruction name={"Notificaciones"} />} />
+              <Route
+                path="/notifications"
+                element={<UnderConstruction name={"Notificaciones"} />}
+              />
               <Route path="/balance" element={<UnderConstruction name={"Tus gastos"} />} />
               <Route path="/deposit-funds/voucher" element={<DepositVoucher />} />
             </Route>
           </>
-        }
+        )}
       </Routes>
     </BrowserRouter>
   );

@@ -22,14 +22,6 @@ const Activity = () => {
         </Link>
         <h1 className="flex-1 text-xl text-center">Actividad</h1>
       </div>
-      {/* <div className="flex items-center gap-3 p-2 mx-6 bg-neutral-800">
-        <Icon icon="uil:search" color="white" className="text-2xl" />
-        <input
-          type="text"
-          placeholder="Buscar"
-          className="flex-1 px-2 text-white bg-transparent outline-none"
-        />
-      </div> */}
       <h1 className="px-6 py-2 mt-4 text-xl font-semibold">Tu actividad</h1>
       <div className="flex flex-col px-6">
         <TransactionContainer transactions={transactions} viewMore={true} />
