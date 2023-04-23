@@ -12,6 +12,10 @@ El equipo está compuesto por los siguientes miembros:
 - Julieta Visser: Diseño UI/UX
 - Constanza Andrada: Diseño UI/UX
 
+## Link del deploy:
+
+### [Financial Wallet](https://front-end-sepia-ten.vercel.app/)
+
 ## Instalación
 
 Para poder instalar y ejecutar el proyecto, sigue los siguientes pasos:
@@ -37,40 +41,6 @@ Para poder instalar y ejecutar el proyecto, sigue los siguientes pasos:
    ```
    npm install
    ```
-
-## Iniciar el Frontend
-
-Para iniciar el frontend, sigue los siguientes pasos:
-
-1. Navega al directorio del proyecto:
-
-   ```
-   cd EL_REPO/front-end
-   ```
-
-   Nota: Recuerda reemplazar "EL_REPO" con el nombre de tu repositorio.
-
-2. Crea un archivo `.env` en el directorio `front-end` y añade lo siguiente:
-
-   ```
-   API_BASE_URL=URL Del backend
-   ```
-
-   Nota: Reemplaza "URL Del backend" con la dirección del servidor backend.
-
-3. Inicia el servidor de desarrollo:
-
-   ```
-   npm run dev
-   ```
-
-4. Abre tu navegador web y visita la siguiente dirección:
-
-   ```
-   http://localhost:5173
-   ```
-
-   Nota: Si tienes algún problema con la dirección, revisa la salida del servidor de desarrollo para verificar la dirección correcta.
 
 ## Iniciar el Backend
 
@@ -110,3 +80,37 @@ Para iniciar el backend, sigue los siguientes pasos:
    ```
    Nota: Si tienes algún problema con la dirección, revisa la salida del servidor para verificar la dirección correcta.
    ```
+
+   ## Iniciar el Frontend
+
+Para iniciar el frontend, sigue los siguientes pasos:
+
+1. Navega al directorio del proyecto:
+
+   ```
+   cd EL_REPO/front-end
+   ```
+
+   Nota: Recuerda reemplazar "EL_REPO" con el nombre de tu repositorio.
+
+2. Crea un archivo `.env` en el directorio `front-end` y añade lo siguiente:
+
+   ```
+   API_BASE_URL= {URL_Backend}/api
+   ```
+
+   Nota: Reemplaza "URL Del backend" con la dirección del servidor backend.
+
+3. Inicia el servidor de desarrollo:
+
+   ```
+   npm run dev
+   ```
+
+4. Abre tu navegador web y visita la siguiente dirección:
+
+   ```
+   http://localhost:5173
+   ```
+
+   Nota: Si tienes algún problema con la dirección, revisa la salida del servidor de desarrollo para verificar la dirección correcta.
